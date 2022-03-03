@@ -100,14 +100,22 @@ Modification from previous implementation
 * Convert values from type int -> short
 ### 6
 #### Assembly
+Management of input/output devices, using the memory display of the units I/O
 ##### Polling
-Management of SPIM input/output devices, using the memory display of the units I/O, and using polling and using interrupts. <br />
+Checking peripheral devices if they are ready to accept/export data without syscall (*write_ch,read_ch*).
 
-Implementation of two functions write_ch,read_ch used for polling
-Read a character from the keyboard and console. These functions are used and not syscall. The string from keyboard is transform to Capital Letters.
 
-* write_ch
-* read_ch
+* write_ch - 
+* read_ch - Save character
+* print_str - Pass characters for printing
+
+| Functions | |
+| :---: | :---: | 
+| write_ch | Reads register / Check preparation of device (checkcross instruction and register value LSB) |
+| read_ch | |
+| print_str | Check string character per character
+
+
 
 
 ##### Interrupts
@@ -126,7 +134,17 @@ Menu options for keyboard using interrupts
 > Exit for space.
 >  Message appears 
 
+Exception file
+```
+lui $k1 0xFFFF
+lw  $k0 4($k1)
 
+la $t1, cdata
+sw $k0,0($t1)
+la $t1, cflag
+addi $k0, $zero,1
+sw $k0,0($t1)
+```
 
 
 
