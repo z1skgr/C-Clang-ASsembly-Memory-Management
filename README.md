@@ -101,17 +101,31 @@ Modification from previous implementation
 ### 6
 #### Assembly
 ##### Polling
+Management of SPIM input/output devices, using the memory display of the units I/O, and using polling and using interrupts. <br />
+
+Implementation of two functions write_ch,read_ch used for polling
+Read a character from the keyboard and console. These functions are used and not syscall. The string from keyboard is transform to Capital Letters.
+
+* write_ch
+* read_ch
+
+
 ##### Interrupts
-* Menu options for keyboard using interrupts
+| Menu | 
+| :---: | 
+| Choice #1 |
+| Choice #2 |
+| Exit |
+
+Menu options for keyboard using interrupts
     * cflag, cdata for handler
 
+<br><br>
+> Choice 1 for 1 
+> Choise 2 for 2
+> Exit for space.
+>  Message appears 
 
-
-**Menu** <br />
-Choice 1 <br />
-Choice 2 <br />
-Exit <br />
-Activated with 1.2, space. Other characters are ignored. The message "Choise X is selected" appears.
 
 
 
@@ -122,27 +136,23 @@ Activated with 1.2, space. Other characters are ignored. The message "Choise X i
 ### C-lang
 ### Assembly
 
-#### Interrupts
-Need simulator settings for Exception I/O. <br />
 
-
-
-
-
-
-
-
-
-#  LAB 6 
-# Polling <br />
-Management of SPIM input/output devices, using the memory display of the units I/O, and using polling and using interrupts. <br />
-
-Implementation of two functions write_ch,read_ch used for polling
-Read a character from the keyboard and console. These functions are used and not syscall. The string from keyboard is transform to Capital Letters.
-
+#### Polling 
 Need simulator settings for Mapped I/O. <br />
+#### Interrupts
+Need simulator settings for Exception I/O. 
+* On SPIM go to Simulator->Settings
+* Select Mapped I/O
 
-# Interrupts <br />
+
+
+
+
+
+
+
+
+
 
 
 
