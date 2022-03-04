@@ -13,7 +13,7 @@
 
 ## Labs
 
-### 1
+### _1_
 Memory management and data structures
 * Hexadeced representation. 
 * Ordering elements in memory using pointers and arrays. 
@@ -22,10 +22,10 @@ Memory management and data structures
 * Dynamic memory allocation 
 * Μemory use map
 
-<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
 
 
-### 2
+### _2_
 Structure management in memory using linked data list operations.
 #### C
 Menu for the options 
@@ -41,6 +41,7 @@ Menu for the options
     * List size (bytes)
     * Element size (bytes)
 
+<br><br>
 
 #### CLang
 * Create List
@@ -48,15 +49,16 @@ Menu for the options
     * (id, value)
 * Delete First
 * Print element value
-<br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
 
-### 3
+### _3_
 Deepening the understanding of memory function in Clang/understanding of Assembly
 #### C
 New operation
  * Print function address
  * Calculate list size to bytes from addresses that occupy items
 
+<br><br><br>
 
 #### CLang
 Conversion of all the variables used in c
@@ -73,10 +75,13 @@ Menu for the options using standards (reference registers, etc)
     * List size (bytes)
     * Element size (bytes)
 
+<br><br><br>
+
 #### Assembly
 Menu options (no functionality)
-<br><br><br><br><br><br><br><br><br><br>
-### 4 
+<br><br><br><br><br><br><br>
+
+### _4_ 
 Deepening the understanding of Clang/Assembly
 #### CLang
 Modification from previous implementation
@@ -84,38 +89,39 @@ Modification from previous implementation
 * Delete Last
 * Print element with minimum value
 
+<br><br><br>
 #### Assembly
 
 * 100 nodes on list (static array)
-* Correctness of assembly contracts
+* Correctness of assembly contracts (register contracts)
 * Menu functionality (#3)
 * Jal commands for call functions
-<br><br><br><br><br><br><br><br><br><br>
-### 5
+<br><br><br><br><br><br><br>
+
+### _5_
 #### Assembly
 Modification from previous implementation
 * Ascending sort using ***recursive*** Merge sort [^1]
     * Stack emerged
-<br><br><br><br><br><br><br><br><br><br>
 * Convert values from type int -> short
-### 6
+
+<br><br><br><br><br><br><br>
+
+### _6_
 #### Assembly
 Management of input/output devices, using the memory display of the units I/O
 ##### Polling
 Checking peripheral devices if they are ready to accept/export data without syscall (*write_ch,read_ch*).
 
 
-* write_ch - 
-* read_ch - Save character
-* print_str - Pass characters for printing
 
 | Functions | |
 | :---: | :---: | 
-| write_ch | Reads register / Check preparation of device (checkcross instruction and register value LSB) |
-| read_ch | |
-| print_str | Check string character per character
+| write_ch | Reads register Transmission control (TC) / Check device (crosscheck instruction and LSB) |
+| read_ch | Waiting for new registration |
+| print_str | Candidate for printing char per char  |
 
-
+<br><br><br>
 
 
 ##### Interrupts
@@ -125,16 +131,33 @@ Checking peripheral devices if they are ready to accept/export data without sysc
 | Choice #2 |
 | Exit |
 
+<br>
+
 Menu options for keyboard using interrupts
     * cflag, cdata for handler
+<br>
+> Choice 1 for 1 <br>
+> Choise 2 for 2 <br>
+> Exit for space. <br>
+> Message appears <br>
 
-<br><br>
-> Choice 1 for 1 
-> Choise 2 for 2
-> Exit for space.
->  Message appears 
 
-Exception file
+
+
+
+<br><br><br><br><br><br><br>
+## How to run 
+### C/CLang
+1. Install Apache NetBeans (or any other C IDE)
+```
+https://netbeans.apache.org/download/index.html
+```
+
+### Assembly
+
+
+
+* Exception file
 ```
 lui $k1 0xFFFF
 lw  $k0 4($k1)
@@ -146,21 +169,6 @@ addi $k0, $zero,1
 sw $k0,0($t1)
 ```
 
-
-
-<br><br><br><br><br><br><br><br><br><br>
-## How to run 
-### C
-### C-lang
-### Assembly
-
-
-#### Polling 
-Need simulator settings for Mapped I/O. <br />
-#### Interrupts
-Need simulator settings for Exception I/O. 
-* On SPIM go to Simulator->Settings
-* Select Mapped I/O
 
 
 
