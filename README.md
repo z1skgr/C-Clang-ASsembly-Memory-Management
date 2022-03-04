@@ -10,6 +10,7 @@
    * [5](#5)
    * [6](#6) 
 * [How to run](#how-to-run)
+* [Acknowledgments](#acknowledgments)
 
 ## Labs
 
@@ -199,7 +200,8 @@ addi $k0, $zero,1
 sw $k0,0($t1)
 ```
 
-
+## Acknowledgments
+Projects were created for the requirements of the lesson Digital Computers
 
 
 
