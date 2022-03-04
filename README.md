@@ -22,7 +22,7 @@ Memory management and data structures
 * Dynamic memory allocation 
 * Μemory use map
 
-<br><br><br><br><br><br><br>
+<br><br><br><br><br>
 
 
 ### _2_
@@ -49,7 +49,7 @@ Menu for the options
     * (id, value)
 * Delete First
 * Print element value
-<br><br><br><br><br><br><br>
+<br><br><br><br><br>
 
 ### _3_
 Deepening the understanding of memory function in Clang/understanding of Assembly
@@ -58,7 +58,7 @@ New operation
  * Print function address
  * Calculate list size to bytes from addresses that occupy items
 
-<br><br><br>
+<br><br>
 
 #### CLang
 Conversion of all the variables used in c
@@ -75,11 +75,11 @@ Menu for the options using standards (reference registers, etc)
     * List size (bytes)
     * Element size (bytes)
 
-<br><br><br>
+<br><br>
 
 #### Assembly
 Menu options (no functionality)
-<br><br><br><br><br><br><br>
+<br><br><br><br><br>
 
 ### _4_ 
 Deepening the understanding of Clang/Assembly
@@ -89,14 +89,13 @@ Modification from previous implementation
 * Delete Last
 * Print element with minimum value
 
-<br><br><br>
+<br><br>
 #### Assembly
-
 * 100 nodes on list (static array)
 * Correctness of assembly contracts (register contracts)
 * Menu functionality (#3)
 * Jal commands for call functions
-<br><br><br><br><br><br><br>
+<br><br><br><br><br>
 
 ### _5_
 #### Assembly
@@ -105,7 +104,7 @@ Modification from previous implementation
     * Stack emerged
 * Convert values from type int -> short
 
-<br><br><br><br><br><br><br>
+<br><br><br><br><br>
 
 ### _6_
 #### Assembly
@@ -121,7 +120,7 @@ Checking peripheral devices if they are ready to accept/export data without sysc
 | read_ch | Waiting for new registration |
 | print_str | Candidate for printing char per char  |
 
-<br><br><br>
+<br><br>
 
 
 ##### Interrupts
@@ -137,7 +136,7 @@ Menu options for keyboard using interrupts
     * cflag, cdata for handler
 <br>
 > Choice 1 for 1 <br>
-> Choise 2 for 2 <br>
+> Choice 2 for 2 <br>
 > Exit for space. <br>
 > Message appears <br>
 
@@ -145,18 +144,49 @@ Menu options for keyboard using interrupts
 
 
 
-<br><br><br><br><br><br><br>
+<br><br><br><br><br>
 ## How to run 
 ### C/CLang
-1. Install Apache NetBeans (or any other C IDE)
+
+1. Instal cygwin compiler for your operation system
+```
+https://www.cygwin.com/install.html
+```
+* Create folder Cygwin
+* Open installer 
+* Install from internet
+* Select your path folder
+* Select `+` and install compiler and debugger
+* Find `gcc-core, gcc-g++, gdb, make`
+<br><br>
+
+2. Configure `PATH` variable
+* Go to System and Security in Control Panel
+* Advanced System Settings
+* Environmental Variables
+* Add to path variable the path ``cygwin-directory\bin`` of your cygwin folder
+<br><br>
+
+3. Install Apache NetBeans (or any other C IDE)
 ```
 https://netbeans.apache.org/download/index.html
 ```
+4. Instal NetBeans plugins
+5. Import .c files to your workspace or Create a new C project
+6. Run your .c source files
 
+<br><br>
 ### Assembly
+1. Install Spim from website
+```
+http://spimsimulator.sourceforge.net/
+```
+2. Install Notepad [^2]  software (or mipster [^3]) 
+3. File->Reinitialize->Load File [^4][^5] -> Run
 
+<br><br>
 
-
+For (#6), necessery modifications on file
 * Exception file
 ```
 lui $k1 0xFFFF
@@ -183,3 +213,7 @@ sw $k0,0($t1)
 
 
 [^1]: https://en.wikipedia.org/wiki/Merge_sort#:~:text=In%20computer%20science%2C%20merge%20sort%20%28also%20commonly%20spelled,was%20invented%20by%20John%20von%20Neumann%20in%201945.
+[^2]: MIPS simulator recognizes programs written in text editors
+[^3]: https://mipster.software.informer.com/
+[^4]: Reinitialize and load every time you run the program
+[^5]: Extension .asm to run files on SPIM
