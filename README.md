@@ -1,4 +1,4 @@
-# Digital Computers
+# memory structure
 > Μemory management at programming levels (high-> mid -> low (Assembly)) 
 
  ## Table of contents
