@@ -1,16 +1,24 @@
+/*
+            ======================================================
+            + Name        : memory.c                             +
+            + Author      : Christos Z, 		                 +
+            + Description : Materials stock                      +
+            ======================================================
+ */
 #include <stdio.h>
 #include <stdlib.h>
+#include <windows.h>
 
 int var1 = 42;
 int var2 = -1;
 	
-struct D{
+struct D{ //  structure D
 	char x;
 	int c;
 	char y;
 };
 		
-struct E{
+struct E{ //  structure E
 	char x;
 	char y;
 	int c;
@@ -42,6 +50,7 @@ int main(){
 	n=(char*)malloc(10*sizeof(char));
 	o=(char*)malloc(16*sizeof(char));
 	q=(char*)malloc(32*sizeof(char));
-	printf("%d %d %d %d\n\n",m,n,o,q);
-	printf("%x %x %x %x\n\n",main,&var1,&a,&m);
+	printf("%d %d %d %d\n\n",m,n,o,q); // Print the addresses of allocated memory
+	printf("%x %x %x %x\n\n",main,&var1,&a,&m); // Print addresses of main function, var1, a, and 
+    Sleep(10000);
  }
