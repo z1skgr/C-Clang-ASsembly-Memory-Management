@@ -60,7 +60,7 @@ int main(){
 	
 	condition_1: // Condtion_1 - List created
 	if(R2!=R4)goto condition_2;
-	printf("Set first node value: ");
+	printf("Set node value: ");
 	scanf(" %d",&R11);
 	value=R11;
 	current=&pointer;

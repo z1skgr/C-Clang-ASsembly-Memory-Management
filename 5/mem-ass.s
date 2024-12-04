@@ -1,4 +1,3 @@
-*************************ASSEMBLY***************************
 .data
 .globl str1
 .globl str2
@@ -23,20 +22,20 @@ str1: .asciiz "\n\n1)Create list\n2)Insert element at the end of the list\n3)Del
 of the list\n4)Print spesific item of the list\n5)Print the number of elements\n6)Print address
 of specific element\n7)Print table's address\n8)Print lowest element\n9)Sort
 List\n10)Exit\n"
-str2: .asciiz "Exodos programmatos"
-str3: .asciiz "Dwse arithmo komvon: "
-str4: .asciiz "Dwse value: "
-str5: .asciiz "Dwse id: "
-str6: .asciiz "Dwse komvo pou thes na extypwseis value & id: "
-str7: .asciiz "Dwse komvo pou thes na ektypwseis dieuthinsi: "
-str8: .asciiz "To stoixeio diagrafthike epithxws!\n"
+str2: .asciiz "Exit program"
+str3: .asciiz "Give node number: "
+str4: .asciiz "Give value: "
+str5: .asciiz "Give id: "
+str6: .asciiz "Give node to print its value & id: "
+str7: .asciiz "Give node to print its address: "
+str8: .asciiz "Element successfully deleted!\n"
 str9: .asciiz "Value: "
 str10: .asciiz "Id: "
 str11: .asciiz "Address: "
 str12: .asciiz "Node Count: "
 str13: .asciiz "Sort List by Value:"
 notFoundLabel: .asciiz "Node was not found"
-exitLabel: .asciiz "Lathos epilogh.Xanaprospathiste!\n"
+exitLabel: .asciiz "Wrong .Try again!\n"
 askint: .asciiz "Type an integer : "
 repint: .asciiz "Your choice is : "
 newline: .asciiz "\n"
@@ -75,7 +74,7 @@ move $s6,$v0 #s6=choice
 li $v0, 4
 la $a0, newline
 syscall
-bne $s6, 1 ,sinthiki_1
+bne $s6, 1 ,condition_1
 la $s1, array
 li $s2, 0
 li $v0, 4 #Read message for nodes
@@ -92,8 +91,8 @@ lw $s0,0($sp)
 lw $ra,4($sp)
 addi $sp,$sp,4
 j loop
-sinthiki_1:
-bne $s6, 2 , sinthiki_2
+condition_1:
+bne $s6, 2 , condition_2
 la $s1, array
 addi $sp,$sp,-8
 sw $s0,0($sp)
@@ -103,8 +102,8 @@ lw $s0,0($sp)
 lw $ra,4($sp)
 addi $sp,$sp,4
 j loop
-sinthiki_2:
-bne $s6, 3 , sinthiki_3
+condition_2:
+bne $s6, 3 , condition_3
 addi $sp,$sp,-8
 sw $s0,0($sp)
 sw $ra,4($sp)
@@ -113,15 +112,15 @@ lw $s0,0($sp)
 lw $ra,4($sp)
 addi $sp,$sp,4
 j loop
-sinthiki_3:
-bne $s6, 4 , sinthiki_4
+condition_3:
+bne $s6, 4 , condition_4
 la $s1, array
 li $v0, 4 #Read message for nodes to print value and id
 la $a0, str6
 syscall
 li $v0, 5
 syscall
-move $s0,$v0 #s0 h apantish p exei dwsei gia tous komvous
+move $s0,$v0 #s0 user's answer for nodes
 addi $sp,$sp,-8
 sw $s0,0($sp)
 sw $ra,4($sp)
@@ -130,8 +129,8 @@ lw $s0,0($sp)
 lw $ra,4($sp)
 addi $sp,$sp,4
 j loop
-sinthiki_4:
-bne $s6, 5 , sinthiki_5
+condition_4:
+bne $s6, 5 , condition_5
 addi $sp,$sp,-8
 sw $s0,0($sp)
 sw $ra,4($sp)
@@ -140,10 +139,10 @@ lw $s0,0($sp)
 lw $ra,4($sp)
 addi $sp,$sp,4
 j loop
-sinthiki_5:
-bne $s6, 6 , sinthiki_6
+condition_5:
+bne $s6, 6 , condition_6
 li $v0, 4 #Print message to select the node to print its address
-la $a0, str6
+la $a0, str7
 syscall
 li $v0, 5 #Read input
 syscall
@@ -156,8 +155,8 @@ lw $s0,0($sp)
 lw $ra,4($sp)
 addi $sp,$sp,4
 j loop
-sinthiki_6:
-bne $s6, 7 , sinthiki_7
+condition_6:
+bne $s6, 7 , condition_7
 addi $sp,$sp,-8
 sw $s0,0($sp)
 sw $ra,4($sp)
@@ -166,8 +165,8 @@ lw $s0,0($sp)
 lw $ra,4($sp)
 addi $sp,$sp,4
 j loop
-sinthiki_7:
-bne $s6, 8 , sinthiki_8
+condition_7:
+bne $s6, 8 , condition_8
 addi $sp,$sp,-8
 sw $s0,0($sp)
 sw $ra,4($sp)
@@ -176,8 +175,8 @@ lw $s0,0($sp)
 lw $ra,4($sp)
 addi $sp,$sp,4
 j loop
-sinthiki_8:
-bne $s6, 9 , sinthiki_9
+condition_8:
+bne $s6, 9 , condition_9
 addi $sp,$sp,-8
 sw $s0,0($sp)
 sw $ra,4($sp)
@@ -186,14 +185,14 @@ lw $s0,0($sp)
 lw $ra,4($sp)
 addi $sp,$sp,4
 j loop
-sinthiki_9:
-bne $s6,10,sinthiki_10;
+condition_9:
+bne $s6,10,condition_10;
 li $v0, 4 #Exit
 la $a0, str2
 syscall
 j loop
-sinthiki_10:
-li $v0, 4 #Minima gia lathos apantish s6>10 && s6<1
+condition_10:
+li $v0, 4 #Wrong answer s6>10 && s6<1
 la $a0, exitLabel
 syscall
 j loop

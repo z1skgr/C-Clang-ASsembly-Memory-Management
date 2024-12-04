@@ -1,11 +1,13 @@
-*************************CLANG********************************************
-*
 #include <stdio.h>
 #include <stdlib.h>
 #include <setjmp.h>
+
+
 #ifndef JAL
 #define jal(X) if(!setjmp(buf)) goto *X;
 #endif
+
+
 #ifndef JR31
 #define JR31 (longjmp(buf,1))
 #endif
@@ -36,48 +38,46 @@ int main(){
 		if(R1!=1)goto epanalipsi;
 	Menu();
 	scanf("%d",&R3);
-	if(R3!=1)goto sinthiki_1;
-	printf("Enter the number of nodes you
-	
-	want in your list: ");
+	if(R3!=1)goto condition_1;
+	printf("Enter the number of nodes you want in your list: ");
 	
 	scanf("%d",&R10);
 	R4=(int)CreateList;
 	jal(R4);
-	sinthiki_1:
-	if(R3!=2)goto sinthiki_2;
+	condition_1:
+	if(R3!=2)goto condition_2;
 	R4=(int)append;
 	jal(R4);
-	sinthiki_2:
-	if(R3!=3)goto sinthiki_3;
+	condition_2:
+	if(R3!=3)goto condition_3;
 	R4=(int)deletelast;
 	jal(R4);
-	sinthiki_3:
-	if(R3!=4)goto sinthiki_4;
+	condition_3:
+	if(R3!=4)goto condition_4;
 	R4=(int)getNode;
 	jal(R4);
-	sinthiki_4:
-	if(R3!=5)goto sinthiki_5;
+	condition_4:
+	if(R3!=5)goto condition_5;
 	R4=(int)printCount;
 	jal(R4);
-	sinthiki_5:
-	if(R3!=6)goto sinthiki_6;
+	condition_5:
+	if(R3!=6)goto condition_6;
 	R4=(int)printAddress;
 	jal(R4);
-	sinthiki_6:
-	if(R3!=7)goto sinthiki_7;
+	condition_6:
+	if(R3!=7)goto condition_7;
 	R4=(int)printListAddress;
 	jal(R4);
-	sinthiki_7:
-	if(R3!=8)goto sinthiki_8;
+	condition_7:
+	if(R3!=8)goto condition_8;
 	R4=(int)printLowNode;
 	jal(R4);
-	sinthiki_8:
-	if(R3!=9)goto sinthiki_9;
+	condition_8:
+	if(R3!=9)goto condition_9;
 	R1=0;
 	
-	printf("Exodos!\n");
-	sinthiki_9:
+	printf("Exit!\n");
+	condition_9:
 	goto while_loop;
 	epanalipsi:
 	system("PAUSE");
@@ -87,16 +87,15 @@ int main(){
 
 void Menu(){
 	printf("\n\nMENU\n\n");
-	printf("1)Dhmiourgia listas\n");
-	printf("2)Eisagwgh stoixeiou sto telos ths listas\n");
-	printf("3)Diagrafh teleutaiou stoixeiou\n");
-	printf("4)Ektypwsh sygkekrimenou stoixeiou\n");
-	printf("5)Ektypwsh arithmou komvon\n");
-	printf("6)Ektypwsh dieuthinshs sygkekrimenou
-	stoixeiou\n");
-	printf("7)Ektypwsh dieuthinshs listas\n");
-	printf("8)Ektypwsh elaxistou komvou\n");
-	printf("9)Exodos\n");
+	printf("1)List creation\n");
+	printf("2)Insert item\n");
+	printf("3)Deletion last item\n");
+	printf("4)Print a specific item\n");
+	printf("5)Print list item number\n");
+	printf("6)Print address of a specific item\n");
+	printf("7)Print list address\n");
+	printf("8)Print node with minimum value\n");
+	printf("9)Exit\n");
 	printf("Dialexte apantish: ");
 }
 
@@ -109,11 +108,11 @@ int CreateList(){
 	if(R2!=(int)NULL)goto f1_1;
 	R8=(int)malloc(sizeof(struct list));
 	ptr=(struct list*)R8;
-	printf("Dwste timh: ");
+	printf("Give value: ");
 	scanf("%hd",&R7);
 	ptr->value=R7;
 	R6=(int)NULL;
-	printf("Dwse id: ");
+	printf("Give id: ");
 	scanf("%d",&R5);
 	ptr->id=R5;
 	ptr->next=(struct list*)R6;
@@ -123,12 +122,12 @@ int CreateList(){
 	new_node=(struct list*)R2;
 	R8=(int)malloc(sizeof(struct list));
 	ptr=(struct list*)R8;
-	printf("Dwste timh: ");
+	printf("Give value: ");
 	scanf("%hd",&R7);
 	
 	ptr->value=R7;
 	R6=(int)NULL;
-	printf("Dwse id: ");
+	printf("Give id: ");
 	scanf("%d",&R5);
 	ptr->id=R5;
 	ptr->next=NULL;
@@ -153,7 +152,7 @@ int CreateList(){
 	R9++;
 	goto while_loop;
 	f1:
-	printf("H lista exei dhmiourgithei!\n");
+	printf("List created!\n");
 	JR31;
 }
 
@@ -163,10 +162,10 @@ int append()
 	struct list *ptr2=(struct list*)R2;
 	R8=(int)malloc(sizeof(struct list));
 	ptr=(struct list*)R8;
-	printf("Dwste timh:");
+	printf("Give value:");
 	scanf("\n%d",&R6);
 	ptr->value=(short)R6;
-	printf("Dwste id: ");
+	printf("Give id: ");
 	scanf("%d",&R7);
 	ptr->id=R7;
 	ptr->next=NULL;
@@ -221,8 +220,7 @@ int getNode(){
 	if(R8!=R7) goto if_else_label;
 	
 	printf("Number of id is:%d: ",ptr->id);
-	printf("Price of value is:%d: \n",ptr-
-	>value);
+	printf("Price of value is:%d: \n",ptr->value);
 	JR31;
 	if_else_label:
 	R6=(int)ptr->next;
@@ -304,7 +302,6 @@ int printLowNode(){
 	ptr=ptr->next;
 	goto while_label2;
 	else_:
-	printf("H mikroterh timh einai %d me id %d kai thesi
-	%x",minV,minI,R27);
+	printf("Lowest value %d id %d and pos %x",minV,minI,R27);
 	JR31;
 }

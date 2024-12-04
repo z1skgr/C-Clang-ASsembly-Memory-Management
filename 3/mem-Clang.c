@@ -1,4 +1,10 @@
-*****************************ΚΩΔΙΚΑΣ ΣΕ Clang********************************
+/*
+            ======================================================
+            + Name        : mem.c                                +
+            + Author      : Christos Z, 		                 +
+            + Description : Memory management                    +
+            ======================================================
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <setjmp.h>
@@ -43,29 +49,29 @@ int main(){
 	
 	Menu();
 	scanf("%d",&R3);
-	if(R3!=1)goto sinthiki_1;
+	if(R3!=1)goto condition_1;
 	R4=(int)CreateList;
 	jal(R4);
-	sinthiki_1:
-	if(R3!=2)goto sinthiki_2;
+	condition_1:
+	if(R3!=2)goto condition_2;
 	R4=(int)append;
 	jal(R4);
-	sinthiki_2:
-	if(R3!=3)goto sinthiki_3;
+	condition_2:
+	if(R3!=3)goto condition_3;
 	R4=(int)deletefirst;
 	jal(R4);
-	sinthiki_3:
-	if(R3!=4)goto sinthiki_4;
+	condition_3:
+	if(R3!=4)goto condition_4;
 	R4=(int)getNode;
 	jal(R4);
-	sinthiki_4:
+	condition_4:
 
-	if(R3!=5)goto sinthiki_5;
+	if(R3!=5)goto condition_5;
 	
 	R1=0;
-	printf("\nExodos apo to program!\n\n");
+	printf("\nExit program!\n\n");
 		
-	sinthiki_5:
+	condition_5:
 	goto while_loop;
 	epanalipsi:
 	system("PAUSE");
@@ -76,67 +82,56 @@ int main(){
 void Menu(){
 
 	printf("\n\nMENU\n\n");
-	printf("1)Dhmiourgia listas\n");
-	printf("2)Eisagwgh stoixeiou\n");
-	printf("3)Diagrafh 1ou stoixeiou\n");
-	printf("4)Ektypwsh sygkekrimenou stoixeiou\n");
-	printf("5)Exodos\n");
-	printf("Dialexte apantish: ");
+	printf("1)List creation\n");
+	printf("2)Insert item\n");
+	printf("3)Deletion of 1st item\n");
+	printf("4)Print a specific item\n");
+	printf("5)Exit\n");
+	printf("Choose: ");
 
 }
-
+// Function to allocate memory for list
 int CreateList(){
 
 struct list *ptr;
 	
 	R8=(int)malloc(sizeof(struct list));
 	ptr=(struct list*)R8;
-	printf("Dwste timh: ");
+	printf("Give 1st element: "); // Prompt for value
 	scanf("%d",&R7);
 	R6=(int)NULL;
 	
 	ptr->value=R7;
-	printf("Dwse id: ");
+	printf("Give id: ");
 	scanf("%hd",&R5);
 	ptr->id=R5;
 	ptr->next=(struct list*)R6;
-	printf("H lista exei dhmiourgithei!\n");
+	printf("List created!!\n");
 	R2=(int)ptr;
 	JR31;
 
 }
-
-int append() //Function that inserts new nodes at the end of
-the list
+// Function to allocate memory for new node
+int append() //Function that inserts new nodes at the end of the list
 {
 
 	struct list *ptr;
 	struct list *ptr2=(struct list*)R2;
 	
-	R8=(int)malloc(sizeof(struct list)); //Allocating
-	
-	memory for the new node
+	R8=(int)malloc(sizeof(struct list)); //Allocating memory for the new node
 	ptr=(struct list*)R8;
 	
 	printf("\nGive me the id of the node: ");
 	scanf("%d",&R7);
 	ptr->id=R7;
-	printf("Give me the value of the node:"); //Taking the
-	
-	rest of the numbers of the list
+	printf("Give me the value of the node:"); //Taking the rest of the numbers of the list
 	scanf("\n%d",&R6);
 	
-	ptr->value=(short)R6; //Giving to him the
-	
-	requested value
-	
+	ptr->value=(short)R6; //Giving to him the requested value
 	ptr->next=NULL; //Initialising the next pointer
 	
 	while_loop:
-	if (!(ptr2->next!=NULL)){
-	
-	goto whileEnd; //Finding the last node
-
+	if (!(ptr2->next!=NULL)){ goto whileEnd; //Finding the last node 
 	}
 
 	R8=(int)malloc(sizeof(struct list));
@@ -156,7 +151,7 @@ the list
 	JR31;
 
 }
-
+// Function to delete first node
 int deletefirst(){
 
 	struct list *ptr=(struct list *)R2;
@@ -174,12 +169,15 @@ int deletefirst(){
 	JR31;
 }
 
+
+// Function to get node element
 int getNode(){
 
 	struct list *ptr=(struct list *)R2;
 	
 	R6=R2;
 	R8=1;
+	// Pointer to traverse the list
 	printf("Enter which node you seek:\n");
 	scanf("%d",&R7);
 	while_label:

@@ -1,8 +1,6 @@
-*************************ASSEMBLY***************************
 .data
 .globl str1
 .globl str2
-
 .globl str3
 .globl str4
 .globl str5
@@ -18,27 +16,20 @@
 .globl array
 .globl menu
 menu: .asciiz "MENU"
-str1: .asciiz "\n\n1)Create list\n2)Insert element at
-the end of the list\n3)Delete the first item of the
-list\n4)Print spesific item of the list\n5)Print the
-number of elements\n6)Print address of specific
-element\n7)Print table's address\n8)Print lowest
-element\n9)Exit\n"
-str2: .asciiz "Exodos programmatos"
-str3: .asciiz "Dwse arithmo komvon: "
-str4: .asciiz "Dwse value: "
-str5: .asciiz "Dwse id: "
-str6: .asciiz "Dwse komvo pou thes na extypwseis value &
-id: "
-str7: .asciiz "Dwse komvo pou thes na ektypwseis
-dieuthinsi: "
-str8: .asciiz "To stoixeio diagrafthike epithxws!\n"
+str1: .asciiz "\n\n1)Create list\n2)Insert element at the end of the list\n3)Delete the last item of the list\n4)Print spesific item of the list\n5)Print the number of elements\n6)Print address of specific element\n7)Print table's address\n8)Print lowest element\n9)Exit\n"
+str2: .asciiz "Exit program"
+str3: .asciiz "Give number of nodes: "
+str4: .asciiz "Give value: "
+str5: .asciiz "Give id: "
+str6: .asciiz "Give node you want to print value & id: "
+str7: .asciiz "Give node you want to print its address: "
+str8: .asciiz "Node successfully deleted!\n"
 str9: .asciiz "Value: "
 str10: .asciiz "Id: "
 str11: .asciiz "Address: "
 str12: .asciiz "Node Count: "
 notFoundLabel: .asciiz "Node was not found"
-exitLabel: .asciiz "Lathos epilogh.Xanaprospathiste!\n"
+exitLabel: .asciiz "Wrong. Try again!\n"
 askint: .asciiz "Type an integer : "
 repint: .asciiz "Your choice is : "
 newline: .asciiz "\n"
@@ -68,7 +59,7 @@ move $s6,$v0 #s6=choice
 li $v0, 4
 la $a0, newline
 syscall
-bne $s6, 1 ,sinthiki_1
+bne $s6, 1 ,condition_1
 la $s1, array
 li $s2, 0
 li $v0, 4 #Read message for nodes
@@ -79,64 +70,60 @@ syscall
 move $s5, $v0 #choice for nodes in the list
 jal CreateList #CreateList
 j loop
-sinthiki_1:
+condition_1:
 
-bne $s6, 2 , sinthiki_2
+bne $s6, 2 , condition_2
 la $s1, array
 jal append
 j loop
-sinthiki_2:
+condition_2:
 
-bne $s6, 3 , sinthiki_3
+bne $s6, 3 , condition_3
 jal deleteLast
 j loop
 
-sinthiki_3:
-bne $s6, 4 , sinthiki_4
+condition_3:
+bne $s6, 4 , condition_4
 la $s1, array
-li $v0, 4 #Read message for nodes to print value
-and id
+li $v0, 4 #Read message for nodes to print value and id
 la $a0, str6
 syscall
 li $v0, 5
 syscall
-move $s0,$v0 #s0 h apantish p exei dwsei gia tous
-komvous
+move $s0,$v0 #s0 answer for nodes
 jal getNode
 j loop
-sinthiki_4:
-bne $s6, 5 , sinthiki_5
+condition_4:
+bne $s6, 5 , condition_5
 jal count #printCount
 j loop
-sinthiki_5:
-bne $s6, 6 , sinthiki_6
-li $v0, 4 #Print message to select the node to
-print its address
-la $a0, str6
+condition_5:
+bne $s6, 6 , condition_6
+li $v0, 4 #Print message to select the node to print its address
+la $a0, str7
 syscall
 li $v0, 5 #Read input
 syscall
 move $s0,$v0 #s0 is wanted node
 jal nodeAdd
 j loop
-sinthiki_6:
-bne $s6, 7 , sinthiki_7
+condition_6:
+bne $s6, 7 , condition_7
 jal tableAdd #print table's Address
 j loop
-sinthiki_7:
-bne $s6, 8 , sinthiki_8
-jal Minimum #print node with the minimum
-value as its id & spot
+condition_7:
+bne $s6, 8 , condition_8
+jal Minimum #print node with the minimum value as its id & spot
 j loop
-sinthiki_8:
+condition_8:
 
-bne $s6, 9 , sinthiki_9
+bne $s6, 9 , condition_9
 li $v0, 4 #Exit
 la $a0, str2
 syscall
 j loop
-sinthiki_9:
-li $v0, 4 #Minima gia lathos apantish s6>9 && s6<1
+condition_9:
+li $v0, 4 #Message for wrong answer s6>9 && s6<1
 la $a0, exitLabel
 syscall
 j loop
@@ -180,11 +167,9 @@ move $t1, $s1 #array t1
 li $t7,0
 li $t4,8
 f2_loop:
-beq $t7,$t2,f2_end #t7 temp register to reach at the
-end of the list
+beq $t7,$t2,f2_end #t7 temp register to reach at the end of the list
 add $t1,$t1,$t4 #t1=t1+8 to reach the node
-addi $t7,$t7,1 #t7=t2 then we reach the end of the
-list
+addi $t7,$t7,1 #t7=t2 then we reach the end of the list
 j f2_loop
 f2_end:
 li $v0, 4 #Print message to add value
@@ -314,8 +299,7 @@ j f3_loop
 f3_end:
 addi $t2,$t2,-1 #counter-1
 
-addi $t1,$t1,-8 #we go the last node and clear its
-values
+addi $t1,$t1,-8 #we go the last node and clear its values
 li $t5,0
 sw $t5,0($t1) #store last node with null
 sw $t5,4($t1)
@@ -333,8 +317,7 @@ li $t5,0
 lw $t3, 0($t1) #value
 lw $t4, 4($t1) #id
 f8_loop:
-addi $t5,$t5,1 #t5==counter we reach the end of the
-list
+addi $t5,$t5,1 #t5==counter we reach the end of the list
 lw $t7,0($t1) #t7=initiate min
 blt $t3,$t7,f8_end
 lw $t3,0($t1) #load min value on t3
