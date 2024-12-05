@@ -31,6 +31,7 @@ la $a0, menu
 syscall #print menu
 li $v0,4
 la $a0,str3 #print str3
+
 syscall
 data_loop:
 la $t1,cflag
@@ -43,11 +44,11 @@ la $t1,cdata
 lw $a0,0($t1) #$a0=cdata
 move $s2,$a0
  
-beq $s2,32,loop_end # space(32)= program ends.
+beq $s2,51,loop_end # space(32)= program ends.
 la $t1,cflag #Since we have the input in cdata, cflag has to be zero again.
 la $a0,0($zero) #$a0=0
 sw $a0,0($t1)
-beq $s2,49,print_str1 # 1(49) print str1
+beq $s2,49,print_str1 #1(49) print str1
 beq $s2,50,print_str2 #2(50) print str2
 li $v0,4
 la $a0, False #Wrong anser

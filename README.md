@@ -187,7 +187,10 @@ http://spimsimulator.sourceforge.net/
 ```
 
 2. Install Notepad [^2]  software (or mipster [^3]) 
-3. File->Reinitialize->Load File [^4][^5] -> Run
+3. Simulator->Settings
+    * Mapped I/O
+    * Load Exception file
+4. File->Reinitialize->Load File [^4][^5] -> Run
 
 <br><br>
 

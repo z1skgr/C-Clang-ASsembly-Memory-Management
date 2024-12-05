@@ -33,7 +33,7 @@
 # Define the exception handling code.  This must go first!
 
 	.kdata
-__m1_:	.asciiz "  Exception "
+__m1_:	.asciiz "  \nException "
 __m2_:	.asciiz " occurred and ignored\n"
 __e0_:	.asciiz "  [Interrupt] "
 __e1_:	.asciiz	"  [TLB]"
@@ -74,6 +74,7 @@ __excp:	.word __e0_, __e1_, __e2_, __e3_, __e4_, __e5_, __e6_, __e7_, __e8_, __e
 s1:	.word 0
 s2:	.word 0
 
+
 # This is the exception handler code that the processor runs when
 # an exception occurs. It only prints some information about the
 # exception, but can server as a model of how to write a handler.
@@ -97,21 +98,16 @@ s2:	.word 0
 	andi $a0 $a0 0x1f
 
 	# Print information about exception.
-	#
-	li $v0 4		# syscall 4 (print_str)
-	la $a0 __m1_
-	syscall
+	lui $k1 0xFFFF
+	lw  $k0 4($k1)
 
-	li $v0 1		# syscall 1 (print_int)
-	srl $a0 $k0 2		# Extract ExcCode Field
-	andi $a0 $a0 0x1f
-	syscall
-
-	li $v0 4		# syscall 4 (print_str)
-	andi $a0 $k0 0x3c
-	lw $a0 __excp($a0)
-	nop
-	syscall
+	la $t1, cdata
+	sw $k0,0($t1)
+	la $t1, cflag
+	addi $k0, $zero,1
+	sw $k0,0($t1)
+	
+	
 
 	bne $k0 0x18 ok_pc	# Bad PC exception requires special checks
 	nop
@@ -125,6 +121,10 @@ s2:	.word 0
 	syscall
 
 ok_pc:
+	li $v0 4		# syscall 4 (print_str)
+	la $a0 __m1_
+	syscall
+	
 	li $v0 4		# syscall 4 (print_str)
 	la $a0 __m2_
 	syscall
@@ -185,6 +185,8 @@ __start:
 	addiu $a2 $a1 4		# envp
 	sll $v0 $a0 2
 	addu $a2 $a2 $v0
+	
+
 	jal main
 	nop
 
@@ -194,11 +196,6 @@ __start:
 	.globl __eoth
 __eoth:
 
-lui $k1 0xFFFF
-lw  $k0 4($k1)
+	
+	
 
-la $t1, cdata
-sw $k0,0($t1)
-la $t1, cflag
-addi $k0, $zero,1
-sw $k0,0($t1)
