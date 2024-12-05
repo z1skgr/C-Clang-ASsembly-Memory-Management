@@ -18,10 +18,7 @@
 .globl array3
 .globl menu
 menu: .asciiz "MENU"
-str1: .asciiz "\n\n1)Create list\n2)Insert element at the end of the list\n3)Delete the first item
-of the list\n4)Print spesific item of the list\n5)Print the number of elements\n6)Print address
-of specific element\n7)Print table's address\n8)Print lowest element\n9)Sort
-List\n10)Exit\n"
+str1: .asciiz "\n\n1)Create list\n2)Insert element at the end of the list\n3)Delete the first item of the list\n4)Print spesific item of the list\n5)Print the number of elements\n6)Print address of specific element\n7)Print table's address\n8)Print lowest element\n9)Sort List\n10)Exit\n"
 str2: .asciiz "Exit program"
 str3: .asciiz "Give node number: "
 str4: .asciiz "Give value: "
@@ -449,8 +446,7 @@ li $v0,4
 syscall
 print:
 move $t1,$s2 # Load the array length
-bge $t0,$t1,printEnd # End of the array means that our list is
-sorted and printed
+bge $t0,$t1,printEnd # End of the array means that our list is sorted and printed
 mul $t2,$t0,4
 addi $t0,$t0,1 # Increase the temp counter
 la $t3,array2($t2)
@@ -469,15 +465,13 @@ li $t9,0
 lw $t5,0($t1)
 move $t6,$s2
 li $t7,0
-while_loop: #Search values on the array to find id of the sorted
-values on array2
+while_loop: #Search values on the array to find id of the sorted values on array2
 beq $t7,$t6,endEq
 lw $t4,0($t2) #Load on t4 sequence value to get if for search
 bne $t4,$t5,endIf
 lw $t8,4($t1) #lw id on t8
 sw $t8,4($t3) #sw id on t3 #Store id on array3
-sw $t4,0($t3) #sw value one t3 #Store value on array3 with the proper
-sequence
+sw $t4,0($t3) #sw value one t3 #Store value on array3 with the proper sequence
 addi $t4,$t4,'0'
 sw $t4,0($t1)
 addi $t3,$t3,8 #Increase address of array3
@@ -518,10 +512,8 @@ sw $a1, 0($sp) # Store addresses (end,start & return)
 sw $a0, -4($sp)
 sw $ra, -8($sp)
 addi $sp,$sp,-8
-sub $t0, $a1, $a0 # Calculate the difference between the start and end
-address (i.e. number of elements * 4)
-ble $t0, 4, FinishMerge # Only one element means that our array is divided into
-pieces
+sub $t0, $a1, $a0 # Calculate the difference between the start and end address (i.e. number of elements * 4)
+ble $t0, 4, FinishMerge # Only one element means that our array is divided into pieces
 div $t0, $t0, 8
 mul $t0, $t0, 4
 add $a1, $a0, $t0
@@ -530,14 +522,12 @@ sw $a1, 4($sp)
 addi $sp,$sp,-8
 jal mergeSorting # Call function (first half of the array-recursive call)
 addi $sp,$sp,8
-lw $a0, 4($sp) #Load end-mid addreesses(Emid is used to help us with the
-merge)
+lw $a0, 4($sp) #Load end-mid addreesses(Emid is used to help us with the merge)
 lw $a1, 0($sp)
 addi $sp,$sp,-8
 jal mergeSorting # Call function (second half of the array -recursive call)
 addi $sp,$sp,8
-lw $a0, -4($sp) # Load array addresses(start-end-middle(middle is not
-necessery address but helpful)
+lw $a0, -4($sp) # Load array addresses(start-end-middle(middle is not necessery address but helpful)
 lw $a2, 0($sp)
 lw $a1, 4($sp)
 addi $sp,$sp,-8
@@ -560,8 +550,7 @@ move $s5, $a0 # Temporary copy for the first half
 merging:
 lw $t0, 0($s5) # Load the first half
 lw $t1, 0($s6) # Load the second half
-bgt $t1, $t0, noChange # If the lower value is already first means the value is in the
-right spot for the sort
+bgt $t1, $t0, noChange # If the lower value is already first means the value is in the right spot for the sort
 move $a0, $s6 # Load the argument for the element
 move $a1, $s5 # Load the argument for the address
 jal Change # Shift the element to the new position

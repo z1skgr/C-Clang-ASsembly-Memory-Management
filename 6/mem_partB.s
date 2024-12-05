@@ -1,16 +1,3 @@
-
-# Code for interrupt in EXCEPTION
-lui $k1, 0xFFFF # 0xFFFF0000=k1
-lw $k0 4($k1) # pernoume to xarakthra p eisaxthike apo to  Receiver Data
-
-la $t1,cdata #cdata =xarakthras
-sw $k0,0($t1)
-
-la $t1,cflag #cflag = 1
-addi $k0,$zero,1 #$k0=1
-sw $k0,0($t1) 
-
-
 .data
 .globl cflag
 .globl cdata

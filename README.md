@@ -14,8 +14,8 @@
 
 ## Labs
 
-### _1_
-Memory management and data structures
+### _1_ 
+#### Memory management and data structures
 * Hexadeced representation. 
 * Ordering elements in memory using pointers and arrays. 
 * Structs declaration
@@ -26,9 +26,9 @@ Memory management and data structures
 <br><br><br><br><br>
 
 
-### _2_
-Structure management in memory using linked data list operations.
-#### C
+### _2_ 
+#### Structure management in memory using linked data list operations.
+##### C
 Menu for the options 
 * Create List
 * Insert Element
@@ -44,7 +44,7 @@ Menu for the options
 
 <br><br>
 
-#### CLang
+##### CLang
 * Create List
 * Insert Element
     * (id, value)
@@ -53,15 +53,15 @@ Menu for the options
 <br><br><br><br><br>
 
 ### _3_
-Deepening the understanding of memory function in Clang/understanding of Assembly
-#### C
+#### Deepening the understanding of memory function in Clang/understanding of Assembly
+##### C
 New operation
  * Print function address
  * Calculate list size to bytes from addresses that occupy items
 
 <br><br>
 
-#### CLang
+##### CLang
 Conversion of all the variables used in c
 Menu for the options using standards (reference registers, etc)
 * Create List
@@ -78,39 +78,41 @@ Menu for the options using standards (reference registers, etc)
 
 <br><br>
 
-#### Assembly
+##### Assembly
 Menu options (no functionality)
 <br><br><br><br><br>
 
 ### _4_ 
-Deepening the understanding of Clang/Assembly
-#### CLang
+#### Deepening the understanding of Clang/Assembly
+##### CLang
 Modification from previous implementation
 * Create finite list
 * Delete Last
 * Print element with minimum value
 
-<br><br>
-#### Assembly
+<br></br>
+
+##### Assembly
 * 100 nodes on list (static array)
 * Correctness of assembly contracts (register contracts)
 * Menu functionality (#3)
 * Jal commands for call functions
 <br><br><br><br><br>
 
-### _5_
-#### Assembly
-Modification from previous implementation
+### _5_ 
+#### Modification from previous implementation
+##### Assembly
 * Ascending sort using ***recursive*** Merge sort [^1]
     * Stack emerged
 * Convert values from type int -> short
 
-<br><br><br><br><br>
+<br></br><br><br/>
 
 ### _6_
-#### Assembly
+#### I/O Exceptions
+##### Assembly
 Management of input/output devices, using the memory display of the units I/O
-##### Polling
+###### Polling
 Checking peripheral devices if they are ready to accept/export data without syscall (*write_ch,read_ch*).
 
 
@@ -145,7 +147,7 @@ Menu options for keyboard using interrupts
 
 
 
-<br><br><br><br><br>
+<br></br><br></br>
 ## How to run 
 ### C/CLang
 
@@ -175,13 +177,15 @@ https://netbeans.apache.org/download/index.html
 4. Instal NetBeans plugins
 5. Import .c files to your workspace or Create a new C project
 6. Run your .c source files
+7. To execute clang files, use _gcc 5.2__ or below
 
 <br><br>
 ### Assembly
-1. Install Spim from website
+1. Install PCSpim from website
 ```
 http://spimsimulator.sourceforge.net/
 ```
+
 2. Install Notepad [^2]  software (or mipster [^3]) 
 3. File->Reinitialize->Load File [^4][^5] -> Run
 

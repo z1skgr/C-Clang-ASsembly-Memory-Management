@@ -83,3 +83,4 @@ j loop #go to label
 end:
 li $v0, 10 # exit program
 syscall
+.end main 
